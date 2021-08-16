@@ -4,10 +4,10 @@
 #include "Course2.h"
 using namespace std;
 
+
 int main()
 {
     Student stu;
-
     int choice;
     cout << "Welcome to Alon School! you have to follwoing options: " << endl;
     cout << "Add a new student to the schoo (press 1) " << endl;
