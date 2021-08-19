@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Course2.h"
+#include "Course2.hpp"
 #include <random>
 #include <string>
 #include <string_view>

@@ -1,7 +1,7 @@
 
 #include <iostream>
-#include "Student2.h"
-#include "Course2.h"
+#include "Student2.hpp"
+#include "Course2.hpp"
 using namespace std;
 
 /////////////////////////////Course Class.//////////////////////////
@@ -18,6 +18,7 @@ int* Course::getGrades()
         cout << Bohan1Grades[i] << endl;
         cout << Bohan2Grades[i] << endl;
     }
+    return TestGrades, Bohan1Grades, Bohan2Grades;
 }
 //to work on
 void Course::SetGrades()
@@ -47,9 +48,9 @@ double Course::average()
     double bohan1_avg;
     double bohan2_avg;
 
-    int sum_test;
-    int sum_bohan1;
-    int sum_bohan2;
+    int sum_test=0;
+    int sum_bohan1=0;
+    int sum_bohan2=0;
 
     for (int i = 0; i < NumOfStusdents; i++)
     {
@@ -125,9 +126,26 @@ double Student::average()
     TrueAvg = (SumAvg + magicbouns + randomBonus / NumOfCourses);
     return TrueAvg;
 }
+void SortArr(Student arr[], int size)
+{
+    int key, j,i;
+    for (i = 1; i < size; i++)
+    {
+        key = arr[i].average();
+        j = i - 1;
+        while ((j >= 0 && arr[j].average()) > (key))
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1].average() = key;
+    }
+}
 void initlaizeSchool()
 {
     Student stu;
+    Student Students[10];
+    int index = 0;
     int choice;
     cout << "Welcome to Alon School! you have to follwoing options: " << endl;
     cout << "Add a new student to the schoo (press 1) " << endl;
@@ -137,6 +155,7 @@ void initlaizeSchool()
     cout << "please enter you choice: ";
     cin >> choice;
     cout << endl;
+    int arrSize = sizeof(Students) / sizeof(Students[0]);
     while (choice != 4)
     {
         if (choice == 1)
@@ -144,14 +163,19 @@ void initlaizeSchool()
             stu.setName();
             stu.setNumCourses();
             stu.InitData();
+            Students[index] = stu;
+            index++;
         }
         if (choice == 2)
         {
-            //to work on
+            for (int i = 0; i < arrSize; i++)
+            {
+                cout<<"Student Average: "<<Students[i].average();
+            }
         }
         if (choice == 3)
         {
-            //to work on
+            sortArr(Students, arrSize);
         }
         if (choice == 4)
         {
